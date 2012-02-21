@@ -21,7 +21,7 @@
 	$item['stacktrace'] = str_replace('    ', '&nbsp;&nbsp;&nbsp;&nbsp;',nl2br(htmlentities(implode($item['json']['exception']['stacktrace']))));
 	$item['sys.argv'] = htmlentities('["'.implode('", "', $item['json']['execution']['sys.argv']).'"]');
 	$item['country'] = substr(exec('/usr/bin/geoiplookup '.$item['ip']), 23);
-var_dump($item['json']['extraData']);
+
 	$status = $item['status'];
 	if($status == 'DUPLICATE') {
 		$status .= ' of <a href="view.php?id='.$item['duplicate_of_id'].'">'.$item['duplicate_of_id'].'</a>';
