@@ -2,11 +2,6 @@
 
 	$content = <<<HTML
 	<h2>Exception Viewer</h2>
-	<div>
-		Show
-		<a class="button" datatable-show="all">All</a>
-		<a class="button" datatable-show="open">Open</a>
-	</div>
 	<table id="issues" style="width: 100%;">
 		<thead>
 			<tr>
@@ -171,24 +166,7 @@ $(document).ready(function() {
 				}
 			});
 
-
-
-			/*ths = $('tfoot th')
-			$('tfoot th').each(function(i) {
-				colIdx = $(this).attr('col-index');
-
-				if(colIdx) {
-					this.innerHTML = fnCreateSelect(oTable.fnGetColumnData(colIdx));
-					$('select', this).change(function() {
-						oTable.fnFilter($(this).val(), i);
-					});
-				}
-			});*/
 		}
-	});
-
-	$('.button').button().click(function () {
-		oTable.fnReloadAjax('issues.json.php?show=' + $(this).attr('datatable-show'));
 	});
 
 });

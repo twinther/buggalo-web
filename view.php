@@ -21,8 +21,7 @@
 	$item['stacktrace'] = str_replace('    ', '&nbsp;&nbsp;&nbsp;&nbsp;',nl2br(htmlentities(implode($item['json']['exception']['stacktrace']))));
 	$item['sys.argv'] = htmlentities('["'.implode('", "', $item['json']['execution']['sys.argv']).'"]');
 	$item['country'] = substr(exec('/usr/bin/geoiplookup '.$item['ip']), 23);
-
-
+var_dump($item['json']['extraData']);
 	$status = $item['status'];
 	if($status == 'DUPLICATE') {
 		$status .= ' of <a href="view.php?id='.$item['duplicate_of_id'].'">'.$item['duplicate_of_id'].'</a>';
@@ -92,7 +91,23 @@
 			<tr><th>Language</th><td>{$item['json']['xbmc']['language']}</td></tr>
 			<tr><th>Skin</th><td>{$item['json']['xbmc']['skin']}</td></tr>
 
+HTML;
 
+	if(isset($item['json']['extraData']) && count($item['json']['extraData']) > 0) {
+		$content .= <<<HTML
+			<tr><td colspan="2" class="header">Extra data</td></tr>
+
+HTML;
+		foreach($item['json']['extraData'] as $key => $value) {
+			$content .= <<<HTML
+				<tr><th>{$key}</th><td>{$value}</td></tr>
+
+HTML;
+		}
+
+	}
+
+	$content .= <<<HTML
 <!--			<tr>
 				<th>Data</th>
 				<td>{$item['json_string']}</td>
