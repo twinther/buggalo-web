@@ -50,16 +50,19 @@
 	session_set_issues($rows);
 
 	$issues = array();
-	foreach($rows as $row) {
-		$issues[] = array(
-			$row['id'],
-			$row['timestamp'],
-			$row['addon_name'],
-			$row['addon_version'],
-			$row['title'],
-			$row['ip'],
-			$row['status']
-		);
+	if (is_array($rows))
+	{
+		foreach($rows as $row) {
+			$issues[] = array(
+				$row['id'],
+				$row['timestamp'],
+				$row['addon_name'],
+				$row['addon_version'],
+				$row['title'],
+				$row['ip'],
+				$row['status']
+			);
+		}
 	}
 
 	$issues_page = array_slice($issues, $start, $length);
